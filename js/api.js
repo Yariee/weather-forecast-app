@@ -1,7 +1,7 @@
 // API.JS will be handling all the API calls to OpenWeatherMap
 
 const API = {
-    BASE_URL: 'https://api.openweathermap.org/2.5',
+    BASE_URL: 'https://api.openweathermap.org/data/2.5',
 
     /**
      * fetch current weather data for a city
@@ -12,7 +12,7 @@ const API = {
      async getCurrentWeather(city) {
         try {
             // Construct URL and make API request
-            const url = `${this.BASE_URL}/weather?q=${city}&appid=${CONFIG.API_KEY}&units=metric`;
+            const url = `${this.BASE_URL}/weather?q=${city}&appid=${CONFIG.API_KEY}&units=imperial`;
 
             const response = await fetch(url)   // fetch deals specifically with network errors
 
