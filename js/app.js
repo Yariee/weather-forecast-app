@@ -4,14 +4,20 @@
 document.addEventListener('DOMContentLoaded', async () => {
 
     try {
+
+        // loading indicator
+        UI.showLoading();
+
         // Test current weather
         console.log('Testing API..');
         const weather = await API.getCurrentWeather('Houston');
         console.log('Weather Data:', weather);
 
-        // Can we access the weather?
-        console.log('Temperature:', weather.main.temp);
+        // display weather on page
+        UI.displayCurrentWeather(weather);
+
     } catch (error) {
-        console.log('Test failed:', error.message);
+        console.error('Error:', error);
+        UI.showError('Failed to load weather data. Please Try again...');
     }
 });
