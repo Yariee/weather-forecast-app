@@ -3,21 +3,56 @@
 // waiting for DOM to load in
 document.addEventListener('DOMContentLoaded', async () => {
 
-    try {
+    // DOM Elements
+    const searchBtn = document.getElementById('search-btn');
+    const cityInput = document.getElementById('city-input');
 
+    // default city on page load
+    loadWeather('Houston');
+
+    // event listener for search button click
+    searchBtn.addEventListener('click', () =>  {
+        const city = cityInput.value.trim();    // trim() removes white space 
+        if (city) {
+            loadWeather(city);
+        } else {
+            UI.showError('Please enter a valid city');
+        }
+    });
+
+    // event listener for 'Enter' key in input 
+    cityInput.addEventListener('keypress', (e) => {
+        if (e.key == 'Enter') {
+            const city = cityInput.value.trim();
+
+            if (city) {
+                loadWeather(city);
+            } else {
+                UI.showError('Please enter a valid city');
+            }
+        }
+    });
+});
+
+/** 
+ * Fetches and displays weather based on input
+ * @param {string} city - city name to search
+ */
+
+async function loadWeather(city) {
+    try {
         // loading indicator
         UI.showLoading();
 
-        // Test current weather
-        console.log('Testing API..');
-        const weather = await API.getCurrentWeather('Houston');
-        console.log('Weather Data:', weather);
+        // fetch weather data
+        console.log(`Fetching weather for ${city}...`);
+        const weather = await API.getCurrentWeather(city);
+        console.log('Weather data received:', weather);
 
-        // display weather on page
+        // Display weather on page
         UI.displayCurrentWeather(weather);
-
     } catch (error) {
-        console.error('Error:', error);
-        UI.showError('Failed to load weather data. Please Try again...');
+        console.log('Error:', error);
+        UI.showError(`Could not find weather data for ${city}. Please check the city name and try again.`);
     }
-});
+}
