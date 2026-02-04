@@ -38,11 +38,11 @@ const API = {
 
      async getForecast(city) {
         try {
-            const url = `${this.BASE_URL}/forecast?q=${city}&appid=${CONFIG.API_KEY}&units=metric`;
+            const url = `${this.BASE_URL}/forecast?q=${city}&appid=${CONFIG.API_KEY}&units=imperial`;
 
-            const reponse = await fetch(url);
+            const response = await fetch(url);
 
-            if (!reponse.ok) {
+            if (!response.ok) {
                 throw new Error(`Forefast not available for: ${city}`);
             }
 
@@ -54,3 +54,20 @@ const API = {
         }
      }
 };
+
+async function testForecast() {
+    try {
+        console.log('Testing forecast api...');
+        const forecast = await API.getForecast('Houston');
+        console.log('Forecast data:', forecast);
+
+        const processed = UI.processForecastData(forecast);
+        console.log('Processes 5-Day forecast', processed);
+        console.log('Day 1:', processed[0]);
+
+    } catch (error) {
+        console.error('Forecast test failed:', error);
+    }
+}
+
+testForecast();

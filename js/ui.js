@@ -82,5 +82,52 @@ const UI = {
                 <p>Loading Weather Data...</p>
             </div>
         `;
+    },
+
+    /**
+     * Processes forecast data and groups by day
+     * @param {object} forecastData - Raw forecast data from API
+     * @returns {array} Array of daily forecast
+     */
+    processForecastData(forecastData) {
+        const dailyData = {};
+
+        // Group forecasts by date
+        forecastData.list.forEach(item => {
+            // extract date (ignoring the time that's in the data)
+            const date = item.dt_txt.split(' ')[0];
+            
+            // if date doesn't exist, create it. Includes collecting all data 
+            if (!dailyData[date]) {
+                dailyData[date] = {
+                    date: date,
+                    temps: [], 
+                    weather: [],
+                    icons: []
+                };
+            }
+            
+            // pushing entry data to the date
+            dailyData[date].temps.push(item.main.temp);
+            dailyData[date].weather.push(item.weather[0].main);
+            dailyData[date].icons.push(item.weather[0].icon);
+
+        });
+        
+        // convert object into an array and calculate max/min for each day.
+        const dailyForecast = Object.keys(dailyData).map(date => {
+            const day = dailyData[date];
+
+            return {
+                date: date, 
+                tempMin: Math.round(Math.min(...day.temps)),
+                tempMax: Math.round(Math.max(...day.temps)),
+                weather: day.weather[0],
+                icon: day.icons[0]
+            };
+        });
+
+        // returning only first 5 days
+        return dailyForecast.slice(0, 5);
     }
 };
