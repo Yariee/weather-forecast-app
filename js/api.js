@@ -54,20 +54,3 @@ const API = {
         }
      }
 };
-
-async function testForecast() {
-    try {
-        console.log('Testing forecast api...');
-        const forecast = await API.getForecast('Houston');
-        console.log('Forecast data:', forecast);
-
-        const processed = UI.processForecastData(forecast);
-        console.log('Processes 5-Day forecast', processed);
-        console.log('Day 1:', processed[0]);
-
-    } catch (error) {
-        console.error('Forecast test failed:', error);
-    }
-}
-
-testForecast();
