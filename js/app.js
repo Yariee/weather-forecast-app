@@ -44,13 +44,20 @@ async function loadWeather(city) {
         // loading indicator
         UI.showLoading();
 
-        // fetch weather data
+        // fetch weather data and forecast. Promise helps fetch multiple things at once instead of one by one
+        // pretty much doing it in parallel
         console.log(`Fetching weather for ${city}...`);
-        const weather = await API.getCurrentWeather(city);
-        console.log('Weather data received:', weather);
+        const [weather, forecast] = await Promise.all([
+            API.getCurrentWeather(city),
+            API.getForecast(city)
+        ]);
 
-        // Display weather on page
+        console.log('Weather data received:', weather);
+        console.log('Forecast data received:', forecast);
+
+        // Display weather and forecast on page
         UI.displayCurrentWeather(weather);
+        UI.displayForecast(forecast);
     } catch (error) {
         console.log('Error:', error);
         UI.showError(`Could not find weather data for ${city}. Please check the city name and try again.`);
