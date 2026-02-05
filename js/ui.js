@@ -103,7 +103,10 @@ const UI = {
                     date: date,
                     temps: [], 
                     weather: [],
-                    icons: []
+                    icons: [],
+                    humidity: [],
+                    feelsLike: [],
+                    windSpeed: []
                 };
             }
             
@@ -111,6 +114,9 @@ const UI = {
             dailyData[date].temps.push(item.main.temp);
             dailyData[date].weather.push(item.weather[0].main);
             dailyData[date].icons.push(item.weather[0].icon);
+            dailyData[date].humidity.push(item.main.humidity);
+            dailyData[date].feelsLike.push(item.main.feels_like);
+            dailyData[date].windSpeed.push(item.wind.speed);
 
         });
         
@@ -118,12 +124,18 @@ const UI = {
         const dailyForecast = Object.keys(dailyData).map(date => {
             const day = dailyData[date];
 
+            // helper function to calculate average
+            const average = arr => Math.round(arr.reduce((a, b) => a + b, 0) / arr.length);
+
             return {
                 date: date, 
                 tempMin: Math.round(Math.min(...day.temps)),
                 tempMax: Math.round(Math.max(...day.temps)),
                 weather: day.weather[0],
-                icon: day.icons[0]
+                icon: day.icons[0],
+                humidity: average(day.humidity),
+                feelsLike: average(day.feelsLike), 
+                windSpeed: average(day.windSpeed)
             };
         });
 
@@ -158,6 +170,11 @@ const UI = {
                     <div class="forecast-temps">
                         <span class="temp-high">${day.tempMax}°</span>
                         <span class="temp-low">${day.tempMin}°</span>
+                    </div>
+                    <div class="forecast-details">
+                        <p><small>Feels Like: ${day.feelsLike}°F</small></p>
+                        <p><small>Humditiy: ${day.humidity}%</small></p>
+                        <p><small>Wind: ${day.windSpeed} mph</small></p>
                     </div>
                 </div>
             `;

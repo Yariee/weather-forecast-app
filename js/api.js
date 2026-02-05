@@ -43,7 +43,7 @@ const API = {
             const response = await fetch(url);
 
             if (!response.ok) {
-                throw new Error(`Forefast not available for: ${city}`);
+                throw new Error(`Forecast not available for: ${city}`);
             }
 
             const data = await response.json();
