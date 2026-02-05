@@ -74,3 +74,91 @@ header h1 {
 #search-btn:active {
     transform: translateY(0);
 }
+
+/* Current Weather Card */
+#curret-weather {
+    margin-bottom: 40px;
+}
+
+#current-weather h2 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.weather-display {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.location {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.location h3 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.location img {
+    width: 100px;
+    height: 100px;
+}
+
+.description {
+    font-size: 1.3rem;
+    color: #666;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.temperature {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.temp-value {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.temp-unit {
+    font-size: 2rem;
+    color: #999;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.detail-item {
+    text-align: center;
+}
+
+.detail-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 5px;;
+}
+
+.detail-value {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+}
