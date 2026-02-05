@@ -119,7 +119,7 @@ const UI = {
             dailyData[date].windSpeed.push(item.wind.speed);
 
         });
-        
+
         // convert object into an array and calculate max/min for each day.
         const dailyForecast = Object.keys(dailyData).map(date => {
             const day = dailyData[date];
@@ -168,8 +168,8 @@ const UI = {
                         alt="${day.weather}">
                     <p class="forecast-weather">${day.weather}</p>
                     <div class="forecast-temps">
-                        <span class="temp-high">${day.tempMax}°</span>
                         <span class="temp-low">${day.tempMin}°</span>
+                        <span class="temp-high">${day.tempMax}°</span>
                     </div>
                     <div class="forecast-details">
                         <p><small>Feels Like: ${day.feelsLike}°F</small></p>
