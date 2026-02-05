@@ -162,3 +162,116 @@ header h1 {
     font-weight: 600;
     color: #333;
 }
+
+/* 5-Day Forecast */
+#forecast {
+    margin-bottom: 40px;
+}
+
+#forecast h2 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#forecast-container {
+    display: grid;
+    /* repeat(auto-fit) automatically fits as many columns as possible onto the screen */
+    /* minmax(200px) = each card is min 200px with max 1 fraction */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.forecast-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.forecast-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.forecast-card h4 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.forecast-date {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.forecast-card img {
+    width: 80px;
+    height: 80px;
+    margin: 10px 0;
+}
+
+.forecast-weather {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+.forecast-temps {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.temp-low {
+    color: #4ecdc4;
+}
+
+.temp-high {
+    color: #ff6b6b;
+}
+
+.forecast-details {
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.forecast-details p {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+.forecast-details small {
+    color: #999;
+}
+
+/* Error states. Hopefully these never load */
+.loading, 
+.error-message {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.loading p {
+    font-size: 1.2rem;
+    color: #667eea;
+}
+
+.error-message p {
+    font-size: 1.1rem;
+    color: #ff6b6b;
+}
