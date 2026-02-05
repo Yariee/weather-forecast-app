@@ -129,5 +129,40 @@ const UI = {
 
         // returning only first 5 days
         return dailyForecast.slice(0, 5);
+    },
+
+    /**
+     * Displays 5-day forecast
+     * @param {object} forecastData - raw forecast data from API
+     */
+    displayForecast(forecastData) {
+        const forecastContainer = document.getElementById('forecast-container');
+
+        // processing raw data into summaries
+        const dailyForecast = this.processForecastData(forecastData);
+
+        // HTML for 5 day forecast
+        const html = dailyForecast.map(day =>  {
+            // formatting
+            const date = new Date(day.date);
+            const dayName = date.toLocaleDateString('en-US', {weekday: 'short' });
+            const monthDay = date.toLocaleDateString('en-US', {month: 'short', day: 'numeric' });
+
+            return `
+                <div class="forecast-card">
+                    <h4>${dayName}</h4>
+                    <p class="forecast-date">${monthDay}</p>
+                    <img src="https://openweathermap.org/img/wn/${day.icon}@2x.png"
+                        alt="${day.weather}">
+                    <p class="forecast-weather">${day.weather}</p>
+                    <div class="forecast-temps">
+                        <span class="temp-high">${day.tempMax}°</span>
+                        <span class="temp-low">${day.tempMin}°</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        forecastContainer.innerHTML = html;
     }
 };
