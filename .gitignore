@@ -146,7 +146,6 @@ vite.config.ts.timestamp-*
 
 # API keys and environment variables
 .env
-config.js
 
 # OS Files
 .DS_Store
