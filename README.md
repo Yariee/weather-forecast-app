@@ -1,5 +1,11 @@
 # weather-forecast-app
-Interactive weather app that shows a 5-day forecast, maps, and data visualizations using the OpenWeatherMap API
+A responsive, real-time weather application built with Javascript that provides current weather conditions, 5-day forecasts and automatic location detection.
+
+**[Live Demo](https://weather-forecast-app-eight-steel.vercel.app/)**
+
+![Weather App Screenshots](screenshots/Weather%20Report.jpeg)
+
+---
 
 ## Features
 - **Current Weather**: Real-time weather conditions for any searchable city
